@@ -1,4 +1,5 @@
 import React, { Component, useEffect } from "react";
+import SecondClass from "./SecondClass";
 const generateUsers = () => {
 	return [
 		{
@@ -74,18 +75,19 @@ export default class App extends Component {
 	changeOnClick = () => {
 		this.setState({ showUsersList: !this.state.showUsersList });
 	};
-	componentDidUpdate() {
-		if (this.state.users.length > 0) {
-			document.title = `${this.state.users.length}`;
-		} else {
-			document.title = "Unmounting";
-		}
-	}
-	// componentWillUnmount(){
-	// 	if (this.state.showUsersList = true) {
-	// 		<App/>
+	// componentDidUpdate() {
+	// 	if (this.state.users.length > 0) {
+	// 		document.title = `${this.state.users.length}`;
 	// 	} else {
-	// 		<h1>componentWillUnmount</h1>
+	// 		document.title = "Unmounting";
+	// 	}
+	// }
+	// componentDidUpdate(prevProps,prevState){
+	// 	if (prevState.users !== this.state.users) {
+	// 		this.setState({ showUsersList: !this.state.showUsersList });
+	// 	} 
+	// 	if (prevState.showUsersList !==this.state.showUsersList){
+	// 		this.setState({ users: [...this.state.users,"Lela"] });
 	// 	}
 	// }
 
@@ -105,6 +107,7 @@ export default class App extends Component {
 				})}
 				<button onClick={this.onClickHandler}>Delete User</button>
 				<button onClick={this.changeOnClick}>Show list</button>
+				<SecondClass/>
 			</div>
 		);
 	}
