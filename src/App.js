@@ -75,21 +75,14 @@ export default class App extends Component {
 	changeOnClick = () => {
 		this.setState({ showUsersList: !this.state.showUsersList });
 	};
-	// componentDidUpdate() {
-	// 	if (this.state.users.length > 0) {
-	// 		document.title = `${this.state.users.length}`;
-	// 	} else {
-	// 		document.title = "Unmounting";
-	// 	}
-	// }
-	// componentDidUpdate(prevProps,prevState){
-	// 	if (prevState.users !== this.state.users) {
-	// 		this.setState({ showUsersList: !this.state.showUsersList });
-	// 	} 
-	// 	if (prevState.showUsersList !==this.state.showUsersList){
-	// 		this.setState({ users: [...this.state.users,"Lela"] });
-	// 	}
-	// }
+	componentDidUpdate() {
+		if (this.state.users.length > 0) {
+			document.title = `${this.state.users.length}`;
+		} else {
+			document.title = "Unmounting";
+		}
+	}
+
 
 	render() {
 		const { users, showUsersList } = this.state;
