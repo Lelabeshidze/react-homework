@@ -1,5 +1,6 @@
 import React, { Component, useEffect } from "react";
 import SecondClass from "./SecondClass";
+import FirstTask from "./FirstTask";
 const generateUsers = () => {
 	return [
 		{
@@ -58,49 +59,23 @@ const generateUsers = () => {
 export default class App extends Component {
 	constructor() {
 		super();
-		this.state = { users: [], showUsersList: true };
+		this.state = { showUsersList: true };
 	}
-	componentDidMount() {
-		this.setState({ showUsersList: true });
-		const data = generateUsers();
-		this.setState({ users: data });
-	}
-	onClickHandler = () => {
-		this.setState((prevState) => {
-			const ind = Math.floor(Math.random() * prevState.users.length);
-			const newArray = prevState.users.filter((user, index) => index !== ind);
-			return { users: newArray };
-		});
-	};
+
 	changeOnClick = () => {
 		this.setState({ showUsersList: !this.state.showUsersList });
 	};
-	componentDidUpdate() {
-		if (this.state.users.length > 0) {
-			document.title = `${this.state.users.length}`;
-		} else {
-			document.title = "Unmounting";
-		}
-	}
-
 
 	render() {
-		const { users, showUsersList } = this.state;
-		console.log(this.state.users);
 		return (
 			<div>
-				{users.map((user) => {
-					const { name, age, id } = user;
-					return (
-						<div key={id}>
-							{name}
-							{age}
-						</div>
-					);
-				})}
-				<button onClick={this.onClickHandler}>Delete User</button>
 				<button onClick={this.changeOnClick}>Show list</button>
-				<SecondClass/>
+				{this.state.showUsersList ? (
+					<FirstTask/> 
+				) : (
+					(document.title = "Unmounting")
+				)}
+				<SecondClass />
 			</div>
 		);
 	}
